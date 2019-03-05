@@ -5,15 +5,24 @@ public class BlackJack {
         Deck deck = new Deck();
         Hand player = new Hand();
         Hand dealer = new Hand();
+        boolean busted;
 
-        deck.clean();
+        player.drawForPlayer(deck);
+        busted = player.isBusted();
 
-        for (int i =0; i < deck.getDeck().size(); i++){
 
+        if (!busted) {
+            dealer.drawForDealer(deck);
+            System.out.println("Player has " + player.calculate() + " points");
+            System.out.println("Dealer has " + dealer.calculate() + " points");
         }
-        player.drawForPlayer(deck.drawCard());
-        dealer.drawForDealer(deck.drawCard());
 
-
+        if ((player.calculate() <= 21 && player.calculate() > dealer.calculate()) || dealer.calculate() > 21) {
+            System.out.println("Player won");
+        } else if (player.calculate() > 21 || player.calculate() < dealer.calculate()) {
+            System.out.println("Player lost");
+        } else if (player.calculate() == dealer.calculate()){
+            System.out.println("Draw");
+        }
     }
 }
