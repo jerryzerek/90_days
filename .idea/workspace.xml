@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d091ad4-f2b8-4a53-95ed-1a1ae88b27b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/TicTac/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TicTac/Field.java" afterDir="false" />
-    </list>
+    <list default="true" id="7d091ad4-f2b8-4a53-95ed-1a1ae88b27b5" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -107,7 +105,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/TicTac/Field.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
+            <state relative-caret-position="17">
               <caret line="21" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
@@ -591,12 +589,12 @@
       <workItem from="1551720754113" duration="10059000" />
       <workItem from="1551814620983" duration="7633000" />
       <workItem from="1552053121058" duration="15890000" />
-      <workItem from="1552144637515" duration="1578000" />
+      <workItem from="1552144637515" duration="1956000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47455000" />
+    <option name="totallyTimeSpent" value="47833000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -623,7 +621,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.49288255" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.41459075" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.8683274" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Build" order="10" weight="0.55871886" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3291815" />
@@ -1002,7 +1000,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TicTac/Field.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
+        <state relative-caret-position="17">
           <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
