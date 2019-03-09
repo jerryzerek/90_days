@@ -11,7 +11,4 @@ public enum Sign {
         this.sign = sign;
     }
 
-    public String getSign() {
-        return sign;
-    }
 }
