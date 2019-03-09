@@ -11,6 +11,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
+import java.util.Random;
 import java.util.stream.Collectors;
 
 
@@ -78,9 +79,9 @@ public class TicTacToeRunner extends Application {
         }
 
         public void handleClick() {
-            if (runner.controller.getField(x, y) == Field.FLD_EMPTY && !controller.isGameEnded()) {
+            if (runner.controller.getField(x, y).getSign() == Sign.SGN_EMPTY && !controller.isGameEnded()) {
                 drawX();
-                if (runner.controller.isWinner(x, y, Field.FLD_CROSS)) {
+                if (runner.controller.isWinner(x, y, Sign.SGN_CROSS)) {
                     statusMsg.setText("Player with X won!");
                     return;
                 } else if (runner.controller.isAllFieldsFilled()) {
@@ -88,17 +89,29 @@ public class TicTacToeRunner extends Application {
                     return;
                 }
 
-                for (int i = 0; i < 3; i++) {
-                    for (int j = 0; j < 3; j++) {
-                        if (runner.controller.getField(i, j) == Field.FLD_EMPTY) {
-                            runner.cell[i][j].drawY();
-                            if (runner.controller.isWinner(i, j, Field.FLD_CIRCLE)) {
-                                statusMsg.setText("Player with O won!");
-                                return;
-                            }
-                            return;
-                        }
+                Random random = new Random();
+                int randomNumber = random.nextInt(runner.controller.getTicTacBoard().getListOfEmptyFields().size());
+                int xCoor = runner.controller.getTicTacBoard().getListOfEmptyFields().get(randomNumber).getX();
+                int yCoor = runner.controller.getTicTacBoard().getListOfEmptyFields().get(randomNumber).getY();
+                if (runner.controller.checkIfOneInRowIsEmpty()) {
+                    int y = runner.controller.getTicTacBoard().getListOfEmptyFields().stream()
+                            .filter(n -> n.getX() == 1)
+                            .findAny().get().getY();
+                    runner.cell[1][y].drawY();
+                    if (runner.controller.isWinner(1, y, Sign.SGN_CRICLE)) {
+                        statusMsg.setText("Player with O won!");
+                        return;
                     }
+                    return;
+                }
+
+                runner.cell[xCoor][yCoor].drawY();
+
+
+
+                if (runner.controller.isWinner(xCoor, yCoor, Sign.SGN_CRICLE)) {
+                    statusMsg.setText("Player with O won!");
+                    return;
                 }
             }
         }
@@ -113,7 +126,7 @@ public class TicTacToeRunner extends Application {
             line2.startYProperty().bind(this.heightProperty().subtract(10));
 
             getChildren().addAll(line1, line2);
-            runner.controller.fillField(x, y, Field.FLD_CROSS);
+            runner.controller.fillField(x, y, Sign.SGN_CROSS);
         }
 
         public void drawY() {
@@ -124,7 +137,7 @@ public class TicTacToeRunner extends Application {
             ellipse.radiusYProperty().bind(this.heightProperty().divide(2).subtract(10));
 
             getChildren().addAll(ellipse);
-            runner.controller.fillField(x, y, Field.FLD_CIRCLE);
+            runner.controller.fillField(x, y, Sign.SGN_CRICLE);
         }
     }
 

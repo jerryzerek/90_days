@@ -1,28 +1,45 @@
 package BlackJack;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class BlackJack {
     public static void main(String[] args) {
         Deck deck = new Deck();
-        Hand player = new Hand();
-        Hand dealer = new Hand();
-        boolean busted;
+        List<Hand> players = new ArrayList<>();
+        int numberOfPlayers = 3;
 
-        player.drawForPlayer(deck);
-        busted = player.isBusted();
-
-
-        if (!busted) {
-            dealer.drawForDealer(deck);
-            System.out.println("Player has " + player.calculate() + " points");
-            System.out.println("Dealer has " + dealer.calculate() + " points");
+        for (int i =0; i < numberOfPlayers; i++) {
+            Hand hand = new Hand(String.valueOf("Player " + (i)));
+            players.add(hand);
         }
 
-        if ((player.calculate() <= 21 && player.calculate() > dealer.calculate()) || dealer.calculate() > 21) {
-            System.out.println("Player won");
-        } else if (player.calculate() > 21 || player.calculate() < dealer.calculate()) {
-            System.out.println("Player lost");
-        } else if (player.calculate() == dealer.calculate()){
-            System.out.println("Draw");
+        for (int i = 1; i < numberOfPlayers; i++) {
+            System.out.println("Player nr " + i + " is drawing");
+            players.get(i).drawForPlayer(deck);
         }
+        System.out.println("Dealer is drawing");
+        players.get(0).drawForDealer(deck);
+
+        for (int i = 1; i < players.size(); i++) {
+            System.out.println("Player " + i + " has " + players.get(i).calculate() + " points") ;
+        }
+        System.out.println("Dealer has " + players.get(0).calculate() + " points");
+
+        Hand winner = new Hand("");
+        for (Hand hand: players) {
+            if (hand.calculate() > winner.calculate() && hand.calculate() <=21) {
+                winner = hand;
+            }
+        }
+
+        if(winner.equals(players.get(0))) {
+            System.out.println("The winner is dealer with points: " + players.get(0).calculate());
+        } else {
+            System.out.println("The winner is " + winner.getPlayerNumber() + " with points: " + winner.calculate());
+        }
+
+
     }
 }
