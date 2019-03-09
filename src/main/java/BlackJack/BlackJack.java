@@ -40,5 +40,7 @@ public class BlackJack {
             System.out.println("The winner is " + winner.getPlayerNumber() + " with points: " + winner.calculate());
         }
 //To jest testowanie marge'a
+        // xxx
+
     }
 }
