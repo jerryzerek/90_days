@@ -20,7 +20,4 @@ public class Field {
         return y;
     }
 
-    public Sign getSign() {
-        return sign;
-    }
 }
