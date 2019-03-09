@@ -7,12 +7,17 @@ import java.util.stream.IntStream;
 
 public class Hand {
     private List<Card> cards = new ArrayList<>();
-    boolean isDrawing = true;
+    private boolean isDrawing = true;
+    private String playerNumber;
 
 
     public void drawCard(Deck deck) {
         Card card = deck.drawCard();
         cards.add(card);
+    }
+
+    public Hand(String playerNumber) {
+        this.playerNumber = playerNumber;
     }
 
     public void drawForPlayer(Deck deck) {
@@ -27,7 +32,7 @@ public class Hand {
                 System.out.println();
             } else if (input.equals("no")) {
                 isDrawing = false;
-                System.out.println("Check next player");
+                System.out.println("Check next player\n");
             } else {
                 System.out.println("Please type yes or no");
             }
@@ -51,12 +56,10 @@ public class Hand {
         return false;
     }
 
-    public boolean isBusted() {
-        if (isLost()) {
-            System.out.println("You crossed 21");
-            return true;
-        }
-        return false;
+
+
+    public String getPlayerNumber() {
+        return playerNumber;
     }
 
     //jak wywoluje ta metode to przez to ze mam nowy obiekt hand to zaczyna sie liczenie od poczatku?

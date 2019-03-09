@@ -1,18 +1,23 @@
 package TicTac;
 
-public enum Field {
-    FLD_CROSS("X"),
-    FLD_CIRCLE("O"),
-    FLD_EMPTY(" ");
+public class Field {
 
-    private String field;
+    private int x;
+    private int y;
+    Sign sign;
 
-    Field(String field) {
-        this.field = field;
+    public Field(int x, int y, Sign sign) {
+        this.x = x;
+        this.y = y;
+        this.sign = sign;
     }
 
-    public String getField() {
-        return field;
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
 }

@@ -1,5 +1,10 @@
 package TicTac;
 
+import javafx.scene.layout.BorderPane;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameController {
     private Board ticTacBoard;
 
@@ -16,47 +21,67 @@ public class GameController {
         return ticTacBoard.getField(x, y);
     }
 
-    public void fillField (int x, int y, Field symbol) {
+    public void fillField (int x, int y, Sign symbol) {
         ticTacBoard.fillField(x, y, symbol);
     }
 
-    public boolean checkRows (int x, Field symbol) {
+    public Board getTicTacBoard() {
+        return ticTacBoard;
+    }
+
+    public boolean checkRows (int x, Sign symbol) {
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            if (ticTacBoard.getField(x, i) != symbol) {
+            if (ticTacBoard.getField(x, i).getSign() != symbol) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean checkColumns(int y, Field symbol) {
+    public boolean checkColumns(int y, Sign symbol) {
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            if (ticTacBoard.getField(i, y) != symbol) {
+            if (ticTacBoard.getField(i, y).getSign() != symbol) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean checkLeftDiagonal(Field symbol) {
-        if (ticTacBoard.getField(2,0) != symbol ||
-            ticTacBoard.getField(1,1) != symbol ||
-            ticTacBoard.getField(0,2) != symbol) {
+    public boolean checkIfOneInRowIsEmpty() {
+        int counterOfEmptyFields = 0;
+        int counterOfCircles = 0;
+            for (int j = 0; j < Board.BOARD_SIZE; j++) {
+                if (ticTacBoard.getField(1, j).getSign() == Sign.SGN_EMPTY) {
+                    counterOfEmptyFields++;
+                }
+                if (ticTacBoard.getField(1, j).getSign() == Sign.SGN_CRICLE){
+                    counterOfCircles++;
+                }
+            }
+        return (counterOfEmptyFields == 1 && counterOfCircles == 2);
+    }
+
+
+
+    public boolean checkLeftDiagonal(Sign symbol) {
+        if (ticTacBoard.getField(2,0).getSign() != symbol ||
+            ticTacBoard.getField(1,1).getSign() != symbol ||
+            ticTacBoard.getField(0,2).getSign() != symbol) {
             return false;
         }
         return true;
     }
 
-    public boolean checkRightDiagonal(Field symbol) {
+    public boolean checkRightDiagonal(Sign symbol) {
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            if (ticTacBoard.getField(i,i) != symbol) {
+            if (ticTacBoard.getField(i,i).getSign() != symbol) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean checkDiagonal (int x, int y, Field symbol) {
+    public boolean checkDiagonal (int x, int y, Sign symbol) {
         if ((x + y) % 2 !=0) {
             return false;
         }
@@ -64,7 +89,7 @@ public class GameController {
         return checkLeftDiagonal(symbol) || checkRightDiagonal(symbol);
     }
 
-    public boolean isWinner(int x, int y, Field symbol) {
+    public boolean isWinner(int x, int y, Sign symbol) {
         if (checkRows(x, symbol) || checkColumns(y, symbol) || checkDiagonal(x, y, symbol)) {
             endGame();
             return true;
@@ -76,7 +101,7 @@ public class GameController {
     public boolean isAllFieldsFilled() {
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
             for(int j = 0; j < Board.BOARD_SIZE; j++) {
-                if (ticTacBoard.getField(i, j) == Field.FLD_EMPTY){
+                if (ticTacBoard.getField(i, j).getSign() == Sign.SGN_EMPTY){
                     return false;
                 }
             }
